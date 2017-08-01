@@ -27,7 +27,7 @@ class NginxXAccelServer(ExternalFileServer):
 
         path_from_root = file_path[len(settings.EXTERNALFILES_UPLOAD_ROOT):]
         url_base = settings.EXTERNALFILES_NGINX_URL_BASE
-        x_accel_url = posixpath.join(url_base, path_from_root)
+        x_accel_url = posixpath.join(url_base, path_from_root.lstrip(posixpath.sep))
 
         response = HttpResponse('')
         response['X-Accel-Redirect'] = x_accel_url
